@@ -30,8 +30,8 @@ public class AuthConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        .authorizeRequests(authorizeRequests ->
-            authorizeRequests
+        .authorizeHttpRequests(authorize ->
+            authorize
             .requestMatchers("/auth/login").permitAll()
             .anyRequest().authenticated()
         )
